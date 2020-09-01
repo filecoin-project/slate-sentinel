@@ -1,0 +1,27 @@
+{
+  "name": "slate-sentinel",
+  "description": "",
+  "author": "slate",
+  "version": "0.0.1",
+  "license": "MIT",
+  "engines": {
+    "node": "14.7.0"
+  },
+  "scripts": {
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=production next start"
+  },
+  "repository": "filecoin-project/slate-sentinel",
+  "dependencies": {
+    "babel-plugin-module-resolver": "^4.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.5",
+    "next": "^9.5.2",
+    "pg": "^8.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
