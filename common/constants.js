@@ -5,6 +5,14 @@ export const IGNORED_DEAL_BOTS = [
   { id: "t1qiqdbbmrdalbntnuapriirduvxu5ltsc5mhy7si", alias_id: "t010089" },
 ];
 
+export const PRIMARY_MINERS = [
+  "t016303",
+  "t016304",
+  "t016305",
+  "t016305",
+  "t016309",
+];
+
 export const ROUTES = [
   "/api/actor-states",
   "/api/actors",
