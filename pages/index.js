@@ -77,7 +77,7 @@ const routes = [
 ];
 
 export default function Index() {
-  return routes.map((each, index) => {
+  const routeElements = routes.map((each, index) => {
     return (
       <div key={each}>
         0{index} — <strong>[GET]</strong>&nbsp;
@@ -85,4 +85,16 @@ export default function Index() {
       </div>
     );
   });
+
+  return (
+    <React.Fragment>
+      <p>Usage</p>
+      <pre
+        style={{ background: `#ececec`, boxSizing: "border-box", padding: 24 }}
+      >{`const response = await fetch('https://sentinel.slate.host/api/your-route-here?offset=0&limit=200');
+`}</pre>
+      <p>Routes</p>
+      {routeElements}
+    </React.Fragment>
+  );
 }

@@ -17,8 +17,8 @@ const DECORATOR = "GET_BLOCKS_SYNCED";
 export default async function handler(req, res) {
   await cors(req, res);
 
-  const offset = req.body.offset || 0;
-  const limit = req.body.limit || 100;
+  const offset = req.query.offset || 0;
+  const limit = req.query.limit || 100;
 
   const response = await runQuery({
     label: DECORATOR,
