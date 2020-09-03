@@ -10,6 +10,8 @@ const cors = initMiddleware(
 );
 
 export default async function handler(req, res) {
+  await cors(req, res);
+
   res
     .status(200)
     .send(
