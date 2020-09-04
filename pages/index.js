@@ -11,6 +11,15 @@ export default function Index() {
     );
   });
 
+  const analysisElements = Constants.ANALYSIS.map((each, index) => {
+    return (
+      <div key={each}>
+        0{index} — <strong>[GET]</strong>&nbsp;
+        <a href={`${each}/?offset=0&limit=200`}>{each}</a>
+      </div>
+    );
+  });
+
   return (
     <React.Fragment>
       <Head>
@@ -31,6 +40,10 @@ export default function Index() {
       <ul>
         <li>slate-sentinel always returns all columns of each table.</li>
       </ul>
+      <p>
+        Analysis —<i>No offset or limit required</i>
+      </p>
+      {analysisElements}
       <p>Routes</p>
       {routeElements}
     </React.Fragment>

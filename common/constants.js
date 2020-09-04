@@ -13,6 +13,18 @@ export const PRIMARY_MINERS = [
   "t016309",
 ];
 
+export const ANALYSIS = [
+  "/api/storage-unique-client-addresses",
+  "/api/storage-unique-cids",
+  "/api/storage-average-real-deal-size",
+  "/api/storage-total-data-stored",
+  "/api/storage-total-deals",
+  "/api/storage-total-verified-data-stored",
+  "/api/storage-total-unverified-data-stored",
+  "/api/storage-clients",
+  "/api/storage-clients-with-addresses",
+];
+
 export const ROUTES = [
   "/api/actor-states",
   "/api/actors",
