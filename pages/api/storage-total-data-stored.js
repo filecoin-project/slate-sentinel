@@ -13,17 +13,18 @@ const cors = initMiddleware(
 
 const DECORATOR = "STORAGE_TOTAL_DATA_STORED";
 const QUERY = `
-SELECT client_id, SUM(unpadded_piece_size)AS data_size
-FROM "public".market_deal_proposals
-WHERE client_id NOT IN (
-  SELECT DISTINCT client_id
-  FROM "public".market_deal_proposals
-  WHERE client_id IN ('t0112', 't0113', 't0114', 't010089')
-  UNION
-  SELECT DISTINCT owner_addr
-  from "public".miner_info)
-GROUP BY client_id
-ORDER BY data_size DESC
+SELECT
+  SUM(unpadded_piece_size)
+FROM
+  "public".market_deal_proposals
+WHERE
+  client_id NOT IN( SELECT DISTINCT
+      client_id FROM "public".market_deal_proposals
+    WHERE
+      client_id IN('t0112', 't0113', 't0114', 't010089')
+    UNION
+    SELECT DISTINCT
+      owner_addr FROM "public".miner_info)
 `.trim();
 
 export default async function handler(req, res) {

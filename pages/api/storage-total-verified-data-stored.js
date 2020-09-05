@@ -11,10 +11,10 @@ const cors = initMiddleware(
   })
 );
 
-const DECORATOR = "STORAGE_TOTAL_VERIFIED_DATA_STORED";
+const DECORATOR = "STORAGE_TOTAL_VERIFIED_DATA_STORED_BYTES";
 const QUERY = `
 SELECT
-  AVG(unpadded_piece_size)
+  SUM(unpadded_piece_size)
 FROM
   "public".market_deal_proposals
 WHERE
