@@ -39,11 +39,11 @@ export default async function handler(req, res) {
         return null;
       }
 
-      if (!query.rows) {
+      if (!query.rows || !query.rows.length) {
         return null;
       }
 
-      return JSON.parse(JSON.stringify(query.rows));
+      return JSON.parse(JSON.stringify(query.rows[0]));
     },
     errorFn: async (e) => {
       return {
