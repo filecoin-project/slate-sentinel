@@ -37,8 +37,10 @@ FROM (
       SELECT DISTINCT
         owner_addr FROM "public".miner_info)
   GROUP BY
-    client_id) AS t1
+    client_id) AS t1    
   JOIN "public".id_address_map AS t2 ON t1.client_id = t2.id
+  ORDER BY
+      t1.data_size DESC
 `.trim();
 
 export default async function handler(req, res) {
