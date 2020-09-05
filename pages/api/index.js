@@ -15,6 +15,13 @@ export default async function handler(req, res) {
   res
     .status(200)
     .send(
-      JSON.stringify({ decorator: "API", data: Constants.ROUTES }, null, 4)
+      JSON.stringify(
+        {
+          decorator: "API",
+          data: [...Constants.ANALYSIS, ...Constants.ROUTES],
+        },
+        null,
+        4
+      )
     );
 }
