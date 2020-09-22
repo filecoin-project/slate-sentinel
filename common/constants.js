@@ -101,4 +101,9 @@ export const ROUTES = [
   "/api/system",
   "/api/top-miners-by-base-reward-max-height",
   "/api/top-miners-by-base-reward",
+  "/api/chain_visualizer_blocks_view",
+  "/api/chain_visualizer_blocks_with_parents_view",
+  "/api/chain_visualizer_chain_data_view",
+  "/api/chain_visualizer_orphans_view",
+  "/api/chain_visualizer_blocks_view_min_max"
 ];
