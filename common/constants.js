@@ -23,6 +23,7 @@ export const ANALYSIS = [
   "/api/storage-total-unverified-data-stored",
   "/api/storage-clients",
   "/api/storage-clients-with-addresses",
+  "/api/storage-leaderboard",
 ];
 
 export const ROUTES = [
