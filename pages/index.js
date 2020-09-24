@@ -20,6 +20,15 @@ export default function Index() {
     );
   });
 
+  const staticElements = Constants.STATIC.map((each, index) => {
+    return (
+      <div key={each}>
+        0{index} — <strong>[GET]</strong>&nbsp;
+        <a href={`${each}`}>{each}</a>
+      </div>
+    );
+  });
+
   return (
     <React.Fragment>
       <Head>
@@ -34,11 +43,16 @@ export default function Index() {
           padding: 24,
           overflowWrap: "break-word",
           whiteSpace: "pre-wrap",
-        }}>{`const response = await fetch('https://sentinel.slate.host/api/your-route-here?offset=0&limit=200');
+        }}
+      >{`const response = await fetch('https://sentinel.slate.host/api/your-route-here?offset=0&limit=200');
 `}</pre>
       <ul>
         <li>slate-sentinel always returns all columns of each table.</li>
       </ul>
+      <p>
+        Static —<i>No offset or limit required, immutable, won't change</i>
+      </p>
+      {staticElements}
       <p>
         Analysis —<i>No offset or limit required</i>
       </p>

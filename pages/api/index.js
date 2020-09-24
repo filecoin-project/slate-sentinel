@@ -12,16 +12,14 @@ const cors = initMiddleware(
 export default async function handler(req, res) {
   await cors(req, res);
 
-  res
-    .status(200)
-    .send(
-      JSON.stringify(
-        {
-          decorator: "API",
-          data: [...Constants.ANALYSIS, ...Constants.ROUTES],
-        },
-        null,
-        4
-      )
-    );
+  res.status(200).send(
+    JSON.stringify(
+      {
+        decorator: "API",
+        data: [...Constants.STATIC, ...Constants.ANALYSIS, ...Constants.ROUTES],
+      },
+      null,
+      4
+    )
+  );
 }

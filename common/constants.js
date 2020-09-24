@@ -13,6 +13,8 @@ export const PRIMARY_MINERS = [
   "t016309",
 ];
 
+export const STATIC = ["/api/static-global-miners"];
+
 export const ANALYSIS = [
   "/api/storage-unique-client-addresses",
   "/api/storage-unique-cids",
