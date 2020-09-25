@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             {
               name: "Europe",
               amount: 1,
-              minerAddresses: ["t02620"],
+              minerAddresses: ["t02620", "t02388"],
             },
             {
               name: "Asia",
@@ -51,6 +51,7 @@ export default async function handler(req, res) {
                 "t020631",
                 "t020961",
                 "t020975",
+                "t08094",
               ],
             },
           ],
