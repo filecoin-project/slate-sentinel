@@ -3,7 +3,7 @@ import * as Environment from "~/common/environment";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
-import { runQuery, processWhereClause } from "~/common/utilities";
+import { runQuery, processWhereClause, processSortBy } from "~/common/utilities";
 
 const cors = initMiddleware(
   Cors({
@@ -20,12 +20,17 @@ export default async function handler(req, res) {
   const offset = req.query.offset || null;
   const limit = req.query.limit || null;
   let whereClauses = [];
+  let sortClauses = [];
+
   try {
     if (req.query.where){
       whereClauses = JSON.parse(req.query.where);
     }
+    if (req.query.sort){
+      sortClauses = JSON.parse(req.query.sort);
+    }
   } catch (e){
-    console.log('malformed json where clause')
+    console.log('malformed json clause')
   }
 
   const response = await runQuery({
@@ -36,8 +41,9 @@ export default async function handler(req, res) {
         .where( function () {return processWhereClause(this, whereClauses)})
         .offset(offset)
         .limit(limit)
-        .orderBy('height', 'asc');
-
+        .modify((qb) => {
+          processSortBy( qb, sortClauses )
+        })
 
       if (!query || query.error) {
         return null;

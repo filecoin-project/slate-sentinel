@@ -44,3 +44,14 @@ export const processWhereClause = (queryObj, whereObject) => {
   };
   return res;
 }
+
+export const processSortBy = (qb, sortObject) => {
+  try {
+    sortObject.forEach(clause => {
+      console.log(clause);
+      qb.orderBy (clause[0], clause[1]);
+    });
+  } catch (e) {
+    console.log(e);
+  };
+}
