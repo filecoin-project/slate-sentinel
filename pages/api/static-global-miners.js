@@ -1,3 +1,7 @@
+// just copy & pasted from here
+// sometimes not
+// https://github.com/filecoin-project/slingshot/blob/master/miners.json
+
 import * as Constants from "~/common/constants";
 
 import Cors from "cors";
