@@ -11,6 +11,15 @@ export default function Index() {
     );
   });
 
+  const chainElements = Constants.CHAIN.map((each, index) => {
+    return (
+      <div key={each}>
+        0{index} — <strong>[GET]</strong>&nbsp;
+        <a href={`${each}`}>{each}</a>
+      </div>
+    );
+  });
+
   const analysisElements = Constants.ANALYSIS.map((each, index) => {
     return (
       <div key={each}>
@@ -53,10 +62,17 @@ export default function Index() {
         Static —<i>No offset or limit required, immutable, won't change</i>
       </p>
       {staticElements}
+
       <p>
         Analysis —<i>No offset or limit required</i>
       </p>
       {analysisElements}
+
+      <p>
+        Chain - <i>Only works with proper query parameters</i>
+      </p>
+      {chainElements}
+
       <p>Routes</p>
       {routeElements}
     </React.Fragment>

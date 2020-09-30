@@ -16,7 +16,12 @@ export default async function handler(req, res) {
     JSON.stringify(
       {
         decorator: "API",
-        data: [...Constants.STATIC, ...Constants.ANALYSIS, ...Constants.ROUTES],
+        data: [
+          ...Constants.STATIC,
+          ...Constants.ANALYSIS,
+          ...Constants.CHAIN,
+          ...Constants.ROUTES,
+        ],
       },
       null,
       4

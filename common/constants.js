@@ -28,6 +28,14 @@ export const ANALYSIS = [
   "/api/storage-leaderboard",
 ];
 
+export const CHAIN = [
+  "/api/chain-visualizer-blocks-view?height=100",
+  "/api/chain-visualizer-blocks-with-parents-view?height=100",
+  "/api/chain-visualizer-chain-data-view?height=100",
+  "/api/chain-visualizer-orphans-view?height=100",
+  "/api/chain-visualizer-blocks-view-min-max?height=100",
+];
+
 export const ROUTES = [
   "/api/actor-states",
   "/api/actors",
@@ -104,9 +112,4 @@ export const ROUTES = [
   "/api/system",
   "/api/top-miners-by-base-reward-max-height",
   "/api/top-miners-by-base-reward",
-  "/api/chain-visualizer-blocks-view",
-  "/api/chain-visualizer-blocks-with-parents-view",
-  "/api/chain-visualizer-chain-data-view",
-  "/api/chain-visualizer-orphans-view",
-  "/api/chain-visualizer-blocks-view-min-max"
 ];
