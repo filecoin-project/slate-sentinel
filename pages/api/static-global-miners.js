@@ -31,6 +31,7 @@ export default async function handler(req, res) {
               name: "North America",
               amount: 1,
               minerAddresses: [
+                "t023586",
                 "t02401",
                 "t010088",
                 "t022142",
@@ -57,6 +58,9 @@ export default async function handler(req, res) {
               name: "Europe",
               amount: 1,
               minerAddresses: [
+                "t08285",
+                "t022405",
+                "t023467",
                 "t020352",
                 "t01240",
                 "t03624",
@@ -88,6 +92,9 @@ export default async function handler(req, res) {
               name: "Asia",
               amount: 1,
               minerAddresses: [
+                "t023202",
+                "t020771",
+                "t023229",
                 "t022038",
                 "t03363",
                 "t02775",
@@ -200,6 +207,7 @@ export default async function handler(req, res) {
                 "t020975",
                 "t07998",
                 "t08094",
+                "t020398",
               ],
             },
           ],
