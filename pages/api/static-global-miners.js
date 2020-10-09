@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             {
               name: "Oceania",
               amount: 1,
-              minerAddresses: ["t010424"],
+              minerAddresses: ["f010424"],
             },
             {
               name: "North America",
