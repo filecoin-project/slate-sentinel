@@ -32,8 +32,8 @@ export const ANALYSIS = [
 export const CHAIN = [
   "/api/chain-visualizer-blocks-view",
   "/api/chain-visualizer-blocks-with-parents-view",
-  // "/api/chain-visualizer-chain-data-view",
-  // "/api/chain-visualizer-orphans-view",
+  "/api/chain-visualizer-chain-data-view",
+  "/api/chain-visualizer-orphans-view",
 ];
 
 export const ROUTES = [

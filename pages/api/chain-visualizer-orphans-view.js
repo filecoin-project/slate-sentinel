@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   await cors(req, res);
 
   const offset = req.query.offset || 0;
-  const limit = req.query.limit || 200;
+  const limit = req.query.limit || 50;
   let whereClauses = [];
   let sortClauses = [];
 
@@ -41,14 +41,10 @@ export default async function handler(req, res) {
     label: DECORATOR,
     queryFn: async (DB) => {
       const query = await DB.select(
-        "win_count",
-        "parent_base_fee",
-        "fork_signaling",
-        "cid",
-        "parent_weight",
-        "parent_state_root",
-        "height",
+        "block",
         "miner",
+        "height",
+        "parent",
         "timestamp"
       )
         .from(TABLE_NAME)
@@ -68,6 +64,7 @@ export default async function handler(req, res) {
       return JSON.parse(JSON.stringify(query));
     },
     errorFn: async (e) => {
+      console.log(e);
       return {
         decorator: DECORATOR,
         error: e,
