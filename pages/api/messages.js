@@ -3,7 +3,11 @@ import * as Environment from "~/common/environment";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
-import { runQuery } from "~/common/utilities";
+import {
+  runQuery,
+  processWhereClause,
+  processSortBy,
+} from "~/common/utilities";
 
 const cors = initMiddleware(
   Cors({
@@ -19,14 +23,34 @@ export default async function handler(req, res) {
 
   const offset = req.query.offset || 0;
   const limit = req.query.limit || 100;
+  let whereClauses = [];
+  let sortClauses = [];
+
+  try {
+    if (req.query.where) {
+      whereClauses = JSON.parse(req.query.where);
+    }
+    if (req.query.sort) {
+      sortClauses = JSON.parse(req.query.sort);
+    }
+  } catch (e) {
+    console.log(e);
+    console.log("malformed json clause");
+  }
 
   const response = await runQuery({
     label: DECORATOR,
     queryFn: async (DB) => {
       const query = await DB.select("*")
         .from(TABLE_NAME)
+        .where(function() {
+          return processWhereClause(this, whereClauses);
+        })
         .offset(offset)
-        .limit(limit);
+        .limit(limit)
+        .modify((qb) => {
+          processSortBy(qb, sortClauses);
+        });
 
       if (!query || query.error) {
         return null;
@@ -35,6 +59,7 @@ export default async function handler(req, res) {
       return JSON.parse(JSON.stringify(query));
     },
     errorFn: async (e) => {
+      console.log(e);
       return {
         decorator: DECORATOR,
         error: e,

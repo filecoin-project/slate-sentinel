@@ -6,7 +6,7 @@ export default function Index() {
     return (
       <div key={each}>
         0{index} — <strong>[GET]</strong>&nbsp;
-        <a href={`${each}/?offset=0&limit=200`}>{each}</a>
+        <a href={`${each}`}>{each}</a>
       </div>
     );
   });
@@ -15,7 +15,7 @@ export default function Index() {
     return (
       <div key={each}>
         0{index} — <strong>[GET]</strong>&nbsp;
-        <a href={`${each}/?offset=0&limit=200`}>{each}</a>
+        <a href={`${each}`}>{each}</a>
       </div>
     );
   });

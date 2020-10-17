@@ -3,7 +3,11 @@ import * as Environment from "~/common/environment";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
-import { runQuery } from "~/common/utilities";
+import {
+  runQuery,
+  processWhereClause,
+  processSortBy,
+} from "~/common/utilities";
 
 const cors = initMiddleware(
   Cors({

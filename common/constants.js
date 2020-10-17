@@ -31,6 +31,7 @@ export const ANALYSIS = [
 
 export const CHAIN = [
   "/api/chain-visualizer-blocks-view",
+  `/api/chain-visualizer-blocks-view?&where=[["where", "miner", "=", "t02305"]]`,
   "/api/chain-visualizer-blocks-with-parents-view",
   "/api/chain-visualizer-chain-data-view",
   "/api/chain-visualizer-orphans-view",
@@ -97,6 +98,7 @@ export const ROUTES = [
   "/api/market-deal-states",
   "/api/mem",
   "/api/messages",
+  `/api/messages?where=[[”where”, “miner”, “=”, “t02305”]]`,
   "/api/miner-info",
   "/api/miner-power",
   "/api/miner-sector-events",

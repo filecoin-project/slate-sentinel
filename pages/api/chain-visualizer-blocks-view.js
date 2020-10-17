@@ -34,6 +34,7 @@ export default async function handler(req, res) {
       sortClauses = JSON.parse(req.query.sort);
     }
   } catch (e) {
+    console.log(e);
     console.log("malformed json clause");
   }
 
