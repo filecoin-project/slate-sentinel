@@ -30,11 +30,10 @@ export const ANALYSIS = [
 ];
 
 export const CHAIN = [
-  "/api/chain-visualizer-blocks-view?height=100",
-  "/api/chain-visualizer-blocks-with-parents-view?height=100",
-  "/api/chain-visualizer-chain-data-view?height=100",
-  "/api/chain-visualizer-orphans-view?height=100",
-  "/api/chain-visualizer-blocks-view-min-max?height=100",
+  "/api/chain-visualizer-blocks-view",
+  "/api/chain-visualizer-blocks-with-parents-view",
+  // "/api/chain-visualizer-chain-data-view",
+  // "/api/chain-visualizer-orphans-view",
 ];
 
 export const ROUTES = [
