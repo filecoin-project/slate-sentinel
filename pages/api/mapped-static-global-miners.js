@@ -28,6 +28,7 @@ const dataMapping = (data, mapping) => {
                 mapping[each].MinPieceSize
               ),
               minDealDuration: Strings.getDaysFromEpoch(mapping[each].Expiry),
+              expiry: mapping[each].Expiry,
               timestamp: mapping[each].Timestamp,
             }
           : {};
