@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     JSON.stringify(
       {
         decorator: "STATIC_GLOBAL_MINERS",
-        data: STATIC_MINER_DATA,
+        data: MinerData,
       },
       null,
       4
