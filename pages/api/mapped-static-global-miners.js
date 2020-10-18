@@ -3,8 +3,7 @@ import * as Strings from "~/common/strings";
 
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
-
-import { STATIC_MINER_DATA } from "~/pages/api/static-global-miners";
+import MinerData from "~/common/miner-data";
 
 const cors = initMiddleware(
   Cors({
@@ -12,20 +11,12 @@ const cors = initMiddleware(
   })
 );
 
-export default async function handler(req, res) {
-  await cors(req, res);
+const dataMapping = (data, mapping) => {
+  data = JSON.parse(JSON.stringify(data));
+  mapping = JSON.parse(JSON.stringify(mapping));
 
-  let mapping = {};
-  try {
-    const response = await fetch(
-      "https://indexes.pow.buidllabs.textile.io/index/ask"
-    );
-    const json = await response.json();
-    mapping = json.Storage;
-  } catch (e) {}
-
-  const mappedData = [
-    ...STATIC_MINER_DATA.buckets.map((location) => {
+  return [
+    ...data.buckets.map((location) => {
       location.minerAddresses = location.minerAddresses.map((each) => {
         const moreData = mapping[each]
           ? {
@@ -52,6 +43,21 @@ export default async function handler(req, res) {
       return location;
     }),
   ];
+};
+
+export default async function handler(req, res) {
+  await cors(req, res);
+
+  let mapping = {};
+  try {
+    const response = await fetch(
+      "https://indexes.pow.buidllabs.textile.io/index/ask"
+    );
+    const json = await response.json();
+    mapping = json.Storage;
+  } catch (e) {}
+
+  const mappedData = dataMapping(MinerData, mapping);
 
   res.status(200).send(
     JSON.stringify(
