@@ -17,6 +17,7 @@ export const PRIMARY_MINERS = [
 export const STATIC = ["/api/static-global-miners"];
 
 export const ANALYSIS = [
+  "/api/mapped-static-global-miners",
   "/api/storage-unique-client-addresses",
   "/api/storage-unique-cids",
   "/api/storage-average-real-deal-size",

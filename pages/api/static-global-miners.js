@@ -7,16 +7,14 @@ import * as Constants from "~/common/constants";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
-const STATIC_MINER_DATA = {
+export const STATIC_MINER_DATA = {
   buckets: [
     {
       name: "Oceania",
-      amount: 1,
       minerAddresses: ["f010424", "f014365"],
     },
     {
       name: "North America",
-      amount: 1,
       minerAddresses: [
         "f023971",
         "f023009",
@@ -42,7 +40,6 @@ const STATIC_MINER_DATA = {
     },
     {
       name: "Europe",
-      amount: 1,
       minerAddresses: [
         "f08157",
         "f08285",
@@ -67,7 +64,6 @@ const STATIC_MINER_DATA = {
     },
     {
       name: "Asia",
-      amount: 1,
       minerAddresses: [
         "f033113",
         "f029556",
