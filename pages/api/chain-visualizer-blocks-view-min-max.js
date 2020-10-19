@@ -15,47 +15,21 @@ const cors = initMiddleware(
   })
 );
 
-const TABLE_NAME = "chain_visualizer_orphans_view";
-const DECORATOR = `GET_${TABLE_NAME.toUpperCase()}`;
+const TABLE_NAME = "chain_visualizer_blocks_view";
+const DECORATOR = `GET_${TABLE_NAME.toUpperCase()}_MIN_MAX`;
 
 export default async function handler(req, res) {
   await cors(req, res);
 
-  const offset = req.query.offset || 0;
-  const limit = req.query.limit || 50;
   let whereClauses = [];
   let sortClauses = [];
-
-  try {
-    if (req.query.where) {
-      whereClauses = JSON.parse(req.query.where);
-    }
-    if (req.query.sort) {
-      sortClauses = JSON.parse(req.query.sort);
-    }
-  } catch (e) {
-    console.log(e);
-  }
 
   const response = await runQuery({
     label: DECORATOR,
     queryFn: async (DB) => {
-      const query = await DB.select(
-        "block",
-        "miner",
-        "height",
-        "parent",
-        "timestamp"
-      )
-        .from(TABLE_NAME)
-        .where(function() {
-          return processWhereClause(this, whereClauses);
-        })
-        .offset(offset)
-        .limit(limit)
-        .modify((qb) => {
-          processSortBy(qb, sortClauses);
-        });
+      const query = await DB.min({ minHeight: "height" })
+        .max({ maxHeight: "height" })
+        .from(TABLE_NAME);
 
       if (!query || query.error) {
         return null;

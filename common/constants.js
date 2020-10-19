@@ -31,6 +31,7 @@ export const ANALYSIS = [
 ];
 
 export const CHAIN = [
+  `/api/chain-visualizer-blocks-view-min-max`,
   "/api/chain-visualizer-blocks-view",
   `/api/chain-visualizer-blocks-view?&where=[["where", "miner", "=", "t02305"]]`,
   "/api/chain-visualizer-blocks-with-parents-view",

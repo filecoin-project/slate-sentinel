@@ -35,7 +35,6 @@ export default async function handler(req, res) {
     }
   } catch (e) {
     console.log(e);
-    console.log("malformed json clause");
   }
 
   const response = await runQuery({
