@@ -20,6 +20,7 @@ const dataMapping = (data, mapping) => {
       location.minerAddresses = location.minerAddresses.map((each) => {
         const moreData = mapping[each]
           ? {
+              id: mapping[each].Miner,
               miner: mapping[each].Miner,
               priceAttoFIL: mapping[each].Price,
               priceFIL: Strings.formatAsFilecoinConversion(mapping[each].Price),
@@ -30,6 +31,13 @@ const dataMapping = (data, mapping) => {
               minDealDuration: Strings.getDaysFromEpoch(mapping[each].Expiry),
               expiry: mapping[each].Expiry,
               timestamp: mapping[each].Timestamp,
+              __wip_ask: {
+                priceAttoFIL: mapping[each].Price,
+                verifiedPriceAttoFIL: 0,
+                minPieceSizeBytes: mapping[each].MinPieceSize,
+                expiry: mapping[each].Expiry,
+                timestamp: mapping[each].Timestamp,
+              },
               __wip_alias: "",
               __wip_notes: "",
               __wip_peerId: "",
@@ -39,7 +47,7 @@ const dataMapping = (data, mapping) => {
               __wip_totalFaults: 0,
               __wip_createdAt: "",
               __wip_lastSealedAt: "",
-              __wip_sectors: {
+              __wip_sectorInfo: {
                 deadline: 0,
                 faultCutoff: 0,
                 challenged: 0,
@@ -56,7 +64,7 @@ const dataMapping = (data, mapping) => {
               __wip_sectorsFaulty: 0,
               __wip_precommits: 0,
             }
-          : {};
+          : { id: mapping[each].Miner };
 
         return {
           ...moreData,
