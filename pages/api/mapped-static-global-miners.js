@@ -21,6 +21,7 @@ const dataMapping = (data, mapping) => {
         return mapping[each]
           ? {
               id: mapping[each].Miner,
+              location: location.name,
               storageAsk: {
                 priceAttoFIL: mapping[each].Price,
                 priceFIL: Strings.formatAsFilecoinConversion(
