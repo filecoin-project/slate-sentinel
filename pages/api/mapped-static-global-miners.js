@@ -30,6 +30,8 @@ const dataMapping = (data, mapping) => {
               minDealDuration: Strings.getDaysFromEpoch(mapping[each].Expiry),
               expiry: mapping[each].Expiry,
               timestamp: mapping[each].Timestamp,
+              __wip_alias: "",
+              __wip_notes: "",
               __wip_peerId: "",
               __wip_ipAddress: "",
               __wip_powerBytes: "",
