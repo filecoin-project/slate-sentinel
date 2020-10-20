@@ -18,60 +18,49 @@ const dataMapping = (data, mapping) => {
   return [
     ...data.buckets.map((location) => {
       location.minerAddresses = location.minerAddresses.map((each) => {
-        const moreData = mapping[each]
+        return mapping[each]
           ? {
               id: mapping[each].Miner,
-              miner: mapping[each].Miner,
-              priceAttoFIL: mapping[each].Price,
-              priceFIL: Strings.formatAsFilecoinConversion(mapping[each].Price),
-              minPieceSizeBytes: mapping[each].MinPieceSize,
-              minPieceSizeFormatted: Strings.bytesToSize(
-                mapping[each].MinPieceSize
-              ),
-              minDealDuration: Strings.getDaysFromEpoch(mapping[each].Expiry),
-              expiry: mapping[each].Expiry,
-              timestamp: mapping[each].Timestamp,
-              __wip_score: "",
-              __wip_data: {},
-              __wip_ask: {
+              storageAsk: {
                 priceAttoFIL: mapping[each].Price,
-                verifiedPriceAttoFIL: 0,
+                priceFIL: Strings.formatAsFilecoinConversion(
+                  mapping[each].Price
+                ),
                 minPieceSizeBytes: mapping[each].MinPieceSize,
+                minPieceSizeFormatted: Strings.bytesToSize(
+                  mapping[each].MinPieceSize
+                ),
+                minDealDuration: Strings.getDaysFromEpoch(mapping[each].Expiry),
                 expiry: mapping[each].Expiry,
                 timestamp: mapping[each].Timestamp,
+                __wip_verifiedPriceAttoFIL: 0,
               },
+              __wip_score: "",
+              __wip_createdAt: "",
+              __wip_data: {},
               __wip_alias: "",
               __wip_notes: "",
               __wip_peerId: "",
               __wip_ipAddress: "",
               __wip_powerBytes: "",
               __wip_totalDeals: 0,
-              __wip_totalFaults: 0,
-              __wip_createdAt: "",
               __wip_lastSealedAt: "",
-              __wip_sectorInfo: {
+              __wip_initialPledgeAttoFIL: 0,
+              __wip_balanceAttoFIL: 0,
+              __wip_availableBalanceAttoFIL: 0,
+              __wip_balanceVestingAttoFIL: 0,
+              __wip_sectorState: {
                 deadline: 0,
                 faultCutoff: 0,
                 challenged: 0,
                 open: 0,
                 closed: 0,
+                total: 0,
+                faults: 0,
+                precommits: 0,
               },
-              __wip_initialPledgeAttoFIL: 0,
-              __wip_balanceAttoFIL: 0,
-              __wip_availableBalanceAttoFIL: 0,
-              __wip_balanceVestingAttoFIL: 0,
-              __wip_sectors: 0,
-              __wip_sectorsActive: 0,
-              __wip_sectorsTotal: 0,
-              __wip_sectorsFaulty: 0,
-              __wip_precommits: 0,
             }
           : { id: each };
-
-        return {
-          ...moreData,
-          miner: each,
-        };
       });
 
       location.amount = location.minerAddresses.length;
