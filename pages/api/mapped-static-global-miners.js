@@ -64,7 +64,7 @@ const dataMapping = (data, mapping) => {
               __wip_sectorsFaulty: 0,
               __wip_precommits: 0,
             }
-          : { id: mapping[each].Miner };
+          : { id: each };
 
         return {
           ...moreData,
