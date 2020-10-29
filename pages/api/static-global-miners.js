@@ -1,5 +1,10 @@
+// just copy & pasted from here
+// sometimes not
+// https://github.com/filecoin-project/slingshot/blob/master/miners.json
+
 import * as Constants from "~/common/constants";
 
+import MinerData from "~/common/miner-data";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
@@ -15,13 +20,8 @@ export default async function handler(req, res) {
   res.status(200).send(
     JSON.stringify(
       {
-        decorator: "API",
-        data: [
-          ...Constants.STATIC,
-          ...Constants.ANALYSIS,
-          ...Constants.CHAIN,
-          ...Constants.ROUTES,
-        ],
+        decorator: "STATIC_GLOBAL_MINERS",
+        data: MinerData,
       },
       null,
       4

@@ -3,11 +3,7 @@ import * as Environment from "~/common/environment";
 import Cors from "cors";
 import initMiddleware from "~/common/init-middleware";
 
-import {
-  runQuery,
-  processWhereClause,
-  processSortBy,
-} from "~/common/utilities";
+import { runQuery } from "~/common/utilities";
 
 const cors = initMiddleware(
   Cors({
@@ -15,51 +11,57 @@ const cors = initMiddleware(
   })
 );
 
-const TABLE_NAME = "messages";
-const DECORATOR = `GET_${TABLE_NAME.toUpperCase()}`;
+const DECORATOR = "STORAGE_LEADERBOARD";
+const QUERY = `
+SELECT
+	client_id,
+	address,
+	data_size,
+	num_cids,
+	num_deals,
+	num_miners
+FROM (
+	SELECT
+		client_id,
+		SUM(unpadded_piece_size) AS data_size,
+		COUNT(DISTINCT piece_cid) AS num_cids,
+		COUNT(DISTINCT deal_id) AS num_deals,
+		COUNT(DISTINCT provider_id) AS num_miners
+	FROM
+		"public".market_deal_proposals
+	WHERE
+		is_verified IS FALSE
+		AND client_id NOT IN( SELECT DISTINCT
+				client_id FROM "public".market_deal_proposals
+			WHERE
+				client_id IN('t0112', 't0113', 't0114', 't010089')
+			UNION
+			SELECT DISTINCT
+				owner_addr FROM "public".miner_info)
+	GROUP BY
+		client_id) AS t1
+	JOIN "public".id_address_map AS t2 ON t1.client_id = t2.id
+`.trim();
 
 export default async function handler(req, res) {
   await cors(req, res);
 
-  const offset = req.query.offset || 0;
-  const limit = req.query.limit || 100;
-  let whereClauses = [];
-  let sortClauses = [];
-
-  try {
-    if (req.query.where) {
-      whereClauses = JSON.parse(req.query.where);
-    }
-    if (req.query.sort) {
-      sortClauses = JSON.parse(req.query.sort);
-    }
-  } catch (e) {
-    console.log(e);
-    console.log("malformed json clause");
-  }
-
   const response = await runQuery({
     label: DECORATOR,
     queryFn: async (DB) => {
-      const query = await DB.select("*")
-        .from(TABLE_NAME)
-        .where(function() {
-          return processWhereClause(this, whereClauses);
-        })
-        .offset(offset)
-        .limit(limit)
-        .modify((qb) => {
-          processSortBy(qb, sortClauses);
-        });
+      const query = await DB.raw(QUERY);
 
       if (!query || query.error) {
         return null;
       }
 
-      return JSON.parse(JSON.stringify(query));
+      if (!query.rows) {
+        return null;
+      }
+
+      return JSON.parse(JSON.stringify(query.rows));
     },
     errorFn: async (e) => {
-      console.log(e);
       return {
         decorator: DECORATOR,
         error: e,

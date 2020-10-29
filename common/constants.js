@@ -1,19 +1,23 @@
 export const IGNORED_DEAL_BOTS = [
-  { id: "t1nslxql4pck5pq7hddlzym3orxlx35wkepzjkm3i", alias_id: "t0112" },
-  { id: "t1stghxhdp2w53dym2nz2jtbpk6ccd4l2lxgmezlq", alias_id: "t0113" },
-  { id: "t1mcr5xkgv4jdl3rnz77outn6xbmygb55vdejgbfi", alias_id: "t0114" },
-  { id: "t1qiqdbbmrdalbntnuapriirduvxu5ltsc5mhy7si", alias_id: "t010089" },
+  { id: "t1nslxql4pck5pq7hddlzym3orxlx35wkepzjkm3i", alias_id: "f0112" },
+  { id: "t1stghxhdp2w53dym2nz2jtbpk6ccd4l2lxgmezlq", alias_id: "f0113" },
+  { id: "t1mcr5xkgv4jdl3rnz77outn6xbmygb55vdejgbfi", alias_id: "f0114" },
+  { id: "t1qiqdbbmrdalbntnuapriirduvxu5ltsc5mhy7si", alias_id: "f010089" },
 ];
 
+// TODO(jim): Get this from the static miners list.
 export const PRIMARY_MINERS = [
-  "t016303",
-  "t016304",
-  "t016305",
-  "t016305",
-  "t016309",
+  "f016303",
+  "f016304",
+  "f016305",
+  "f016305",
+  "f016309",
 ];
+
+export const STATIC = ["/api/static-global-miners"];
 
 export const ANALYSIS = [
+  "/api/mapped-static-global-miners",
   "/api/storage-unique-client-addresses",
   "/api/storage-unique-cids",
   "/api/storage-average-real-deal-size",
@@ -23,6 +27,16 @@ export const ANALYSIS = [
   "/api/storage-total-unverified-data-stored",
   "/api/storage-clients",
   "/api/storage-clients-with-addresses",
+  "/api/storage-leaderboard",
+];
+
+export const CHAIN = [
+  `/api/chain-visualizer-blocks-view-min-max`,
+  "/api/chain-visualizer-blocks-view",
+  `/api/chain-visualizer-blocks-view?&where=[["where", "miner", "=", "t02305"]]`,
+  "/api/chain-visualizer-blocks-with-parents-view",
+  "/api/chain-visualizer-chain-data-view",
+  "/api/chain-visualizer-orphans-view",
 ];
 
 export const ROUTES = [
@@ -86,6 +100,7 @@ export const ROUTES = [
   "/api/market-deal-states",
   "/api/mem",
   "/api/messages",
+  `/api/messages?where=[[”where”, “miner”, “=”, “t02305”]]`,
   "/api/miner-info",
   "/api/miner-power",
   "/api/miner-sector-events",

@@ -15,14 +15,14 @@ const cors = initMiddleware(
   })
 );
 
-const TABLE_NAME = "messages";
+const TABLE_NAME = "chain_visualizer_blocks_view";
 const DECORATOR = `GET_${TABLE_NAME.toUpperCase()}`;
 
 export default async function handler(req, res) {
   await cors(req, res);
 
   const offset = req.query.offset || 0;
-  const limit = req.query.limit || 100;
+  const limit = req.query.limit || 200;
   let whereClauses = [];
   let sortClauses = [];
 
@@ -35,13 +35,22 @@ export default async function handler(req, res) {
     }
   } catch (e) {
     console.log(e);
-    console.log("malformed json clause");
   }
 
   const response = await runQuery({
     label: DECORATOR,
     queryFn: async (DB) => {
-      const query = await DB.select("*")
+      const query = await DB.select(
+        "win_count",
+        "parent_base_fee",
+        "fork_signaling",
+        "cid",
+        "parent_weight",
+        "parent_state_root",
+        "height",
+        "miner",
+        "timestamp"
+      )
         .from(TABLE_NAME)
         .where(function() {
           return processWhereClause(this, whereClauses);
