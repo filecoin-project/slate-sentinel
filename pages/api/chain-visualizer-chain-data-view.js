@@ -42,10 +42,17 @@ export default async function handler(req, res) {
     queryFn: async (DB) => {
       const query = await DB.select(
         "block",
+        "parent",
         "miner",
         "height",
-        "parent",
-        "timestamp"
+        "parentweight",
+        "timestamp",
+        "parentstateroot",
+        "parenttimestamp",
+        "parentheight",
+        "parentpower",
+        "syncedtimestamp",
+        "messages"
       )
         .from(TABLE_NAME)
         .where(function() {
