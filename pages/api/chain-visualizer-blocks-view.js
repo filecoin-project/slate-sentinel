@@ -42,7 +42,6 @@ export default async function handler(req, res) {
     queryFn: async (DB) => {
       const query = await DB.select(
         "win_count",
-        "parent_base_fee",
         "fork_signaling",
         "cid",
         "parent_weight",

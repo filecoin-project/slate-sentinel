@@ -45,7 +45,9 @@ export default async function handler(req, res) {
         "miner",
         "height",
         "parent",
-        "timestamp"
+        "timestamp",
+        "parentweight",
+        "parentstateroot"
       )
         .from(TABLE_NAME)
         .where(function() {
