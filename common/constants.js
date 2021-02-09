@@ -18,6 +18,7 @@ export const STATIC = ["/api/static-global-miners"];
 
 export const ANALYSIS = [
   "/api/mapped-static-global-miners",
+  /*
   "/api/storage-unique-client-addresses",
   "/api/storage-unique-cids",
   "/api/storage-average-real-deal-size",
@@ -27,6 +28,7 @@ export const ANALYSIS = [
   "/api/storage-total-unverified-data-stored",
   "/api/storage-clients",
   "/api/storage-clients-with-addresses",
+  */
   "/api/storage-leaderboard",
 ];
 
